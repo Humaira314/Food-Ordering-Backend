@@ -1,10 +1,7 @@
-// Prefer current origin when served through Flask; fall back to localhost when opened from disk.
+// Use current origin for API calls (works for both local and production)
 const API_BASE_URL = (() => {
    const { origin } = window.location;
-   if (origin && origin.startsWith("http")) {
-      return `${origin.replace(/\/$/, "")}/api`;
-   }
-   return "http://127.0.0.1:5000/api";
+   return `${origin.replace(/\/$/, "")}/api`;
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
