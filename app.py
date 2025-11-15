@@ -12,11 +12,8 @@ import os
 
 def _build_frontend_path(*parts: str) -> str:
     """Return an absolute path inside the Forntend directory."""
-    # Try relative path first (for local development)
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Forntend'))
-    if not os.path.exists(base_dir):
-        # Fallback for production: look in same directory as backend
-        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Forntend'))
+    # Look for Forntend in the same directory as app.py
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'Forntend'))
     return os.path.join(base_dir, *parts)
 
 
