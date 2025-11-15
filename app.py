@@ -23,7 +23,21 @@ RIDER_DIR = _build_frontend_path('rider panel')
 
 app = Flask(__name__, static_folder=CUSTOMER_DIR, static_url_path='')
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
-CORS(app)
+
+# Configure CORS to allow Vercel frontend
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "https://food-ordering-gray.vercel.app",
+            "https://food-ordering-backend-b3k6.onrender.com",
+            "http://127.0.0.1:5000",  # For local development
+            "http://localhost:5000"
+        ],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
 
 # 🧩 API Blueprints register করা
 app.register_blueprint(auth_bp, url_prefix='/api/auth')

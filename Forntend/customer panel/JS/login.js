@@ -1,8 +1,5 @@
-// Use current origin for API calls (works for both local and production)
-const API_BASE_URL = (() => {
-   const { origin } = window.location;
-   return `${origin.replace(/\/$/, "")}/api`;
-})();
+// API base URL - use environment variable or default to Render backend
+const API_BASE_URL = window.BACKEND_URL || "https://food-ordering-backend-b3k6.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", () => {
    const form = document.getElementById("loginForm");

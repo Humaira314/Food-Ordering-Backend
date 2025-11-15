@@ -1,4 +1,4 @@
-const API_BASE_URL = `${window.location.origin}/api`;
+const API_BASE_URL = window.BACKEND_URL || "https://food-ordering-backend-b3k6.onrender.com/api";
 const RIDER_TOKEN_MAP = { rider1: "rider_token" };
 
 function parseItems(rawItems) {
